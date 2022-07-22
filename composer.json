@@ -1,4 +1,9 @@
 {
+    "autoload" : {
+        "psr-4" : {
+            "Microblog\\" : "src/"
+        }
+    },    
     "require": {
         "twbs/bootstrap": "^5.1",
         "twbs/bootstrap-icons": "^1.9"
