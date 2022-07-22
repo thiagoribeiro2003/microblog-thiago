@@ -1,4 +1,5 @@
 <?php
+require_once "../vendor/autoload.php";
 $pagina = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
