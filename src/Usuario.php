@@ -1,6 +1,5 @@
 <?php
 namespace Microblog;
-
 use PDO, Exception;
 
 final class Usuario {
@@ -11,7 +10,7 @@ final class Usuario {
     private string $tipo;
     private PDO $conexao;
 
-    public function __construct() // no momento em q for criado o objeto ele ja vai estar conectado ao banco
+    public function __construct()
     {
         $this->conexao = Banco::conecta();
     }
@@ -29,8 +28,16 @@ final class Usuario {
         }
         return $resultado;
     }
-    
+
 }
+
+/* 
+try {
+
+} catch (Exception $erro) {
+    die("Erro: ". $erro->getMessage());
+}
+*/
 
 // try {
 
