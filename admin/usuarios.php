@@ -1,6 +1,6 @@
 <?php 
 use Microblog\Usuario;
-use Microblog\Utilitarios;
+use Microblo\Utilitarios;
 
 require_once "../inc/cabecalho-admin.php";
 
