@@ -15,6 +15,7 @@ final class Usuario {
         $this->conexao = Banco::conecta();
     }
 
+
     public function listar():array {
         $sql = "SELECT id, nome, email, tipo 
         FROM usuarios ORDER BY nome";
@@ -46,11 +47,61 @@ final class Usuario {
         
     }
 
+    public function listarUm(): array{
+        $sql = "SELECT * FROM usuarios WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro: ". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
+    public function atualizar():void {
+        $sql = "UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, tipo = :tipo WHERE id = :id";
+        
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindParam(":email", $this->email, PDO::PARAM_STR);
+            $consulta->bindParam(":senha", $this->senha, PDO::PARAM_STR);
+            $consulta->bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
+            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Exception $erro) {
+             die("Erro ". $erro->getMessage());
+        }
+    }
+
 
     public function codificaSenha(string $senha):string {
         return password_hash($senha, PASSWORD_DEFAULT);
     }
 
+/* Usamos a password_verify para COMPARAR as duas senhas: 
+a digitada no formulário e a existente no Banco*/
+    public function verificaSenha(string $senhaFormulario, string $senhaBanco):string {
+        if (password_verify($senhaFormulario, $senhaBanco)) {
+            return $senhaBanco;
+        } else {
+           return $this->codificaSenha($senhaFormulario);
+        }
+    }
+
+    public function excluirUsuario():void {
+        $sql = "DELETE FROM usuarios WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+    }
 
     /* 
 try {
