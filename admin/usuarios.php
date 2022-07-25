@@ -1,9 +1,7 @@
 <?php 
 use Microblog\Usuario;
 use Microblo\Utilitarios;
-
 require_once "../inc/cabecalho-admin.php";
-
 $usuario = new Usuario;
 $listaDeUsuarios = $usuario->listar();
 // Utilitarios::dump($listaDeUsuarios);
