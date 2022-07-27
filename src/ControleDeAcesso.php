@@ -3,8 +3,7 @@ namespace Microblog;
 
 final class ControleDeAcesso {
 
-    public function __construct()
-    {
+    public function __construct(){
         // Se NÃO EXISTE uma sessão em funcionamento
         if( !isset($_SESSION) ){
             // Então iniciamos a sessão
@@ -12,7 +11,7 @@ final class ControleDeAcesso {
         }
     }
 
-    public function verificaAcesso():void {
+    public function verificaAcesso():void{
         /* Se NÃO EXISTIR uma variável de sessão relacionada ao id do usuário logado... */
         if(!isset($_SESSION['id'])){
             /* Então significa que o usuário não está  logado,
@@ -22,5 +21,13 @@ final class ControleDeAcesso {
             header("location:../login.php?acesso_proibido");
             die(); // exit;
         }
+    }
+
+    public function login(int $id, string $nome, string $tipo){
+        /* No momento em que ocorrer o login, adicionamos à sessão
+        variáveis de sessão contendo os dados necessários para o sistema*/
+        $_SESSION['id'] = $id;
+        $_SESSION['nome'] = $nome;
+        $_SESSION['tipo'] = $tipo;
     }
 }
