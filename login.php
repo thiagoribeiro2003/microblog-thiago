@@ -70,6 +70,7 @@ if( isset($_GET['acesso_proibido'])) {
 					}
 
 				}
+				
 			?>
     </div>
     
