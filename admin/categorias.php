@@ -1,5 +1,6 @@
-<?php 
+<?php
 require_once "../inc/cabecalho-admin.php";
+$sessao->verificaAcessoAdmin();
 ?>
 
 

@@ -1,5 +1,13 @@
-<?php 
+<?php
+use Microblog\ControleDeAcesso;
 require_once "../inc/cabecalho-admin.php";
+$sessao = new ControleDeAcesso;
+$sessao->verificaAcesso();
+$sessao->verificaAcessoAdmin();
+
+
+
+
 ?>
 
 
@@ -7,7 +15,7 @@ require_once "../inc/cabecalho-admin.php";
     <div class="container-fluid py-1">        
         <h2 class="display-4 bg-warning rounded text-center">Não autorizado!</h2>
         <hr class="my-4">
-        <p class="fs-5 text-center">Desculpe <b>usuário</b>, mas você <span class="badge bg-danger">não tem permissão </span> para acessar este recurso.</p>
+        <p class="fs-5 text-center">Desculpe <b><?=$_SESSION['nome']?></b>, mas você <span class="badge bg-danger">não tem permissão </span> para acessar este recurso.</p>
         <hr class="my-4">
 
         <p>
