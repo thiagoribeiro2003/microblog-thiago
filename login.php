@@ -73,7 +73,7 @@ if( isset($_GET['acesso_proibido'])) {
 								$sessao->login($dados['id'], $dados['nome'], $dados['tipo']);
 								header("location:admin/index.php");
 							} else {
-								// Caso contrário, mantenha na ágina login e apresente uma mensagem
+								// Caso contrário, mantenha na página login e apresente uma mensagem
 								header("location:login.php?senha_incorreta");
 							}
 						}
