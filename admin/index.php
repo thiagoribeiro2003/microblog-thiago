@@ -1,10 +1,8 @@
 <?php
-use Microblog\Usuario;
+
 require_once "../inc/cabecalho-admin.php";
 
-$usuario = new Usuario;
-$usuario->setId($_SESSION['id']);
-$dados = $usuario->listarUm();
+
 if( isset($_GET['perfil-atualizado'])) {
 	$feedback = 'DADOS ATUALIZADO COM SUCESSO!';
 }
@@ -12,7 +10,8 @@ if( isset($_GET['perfil-atualizado'])) {
 
 <article class="p-5 my-4 rounded-3 bg-white shadow">
     <div class="container-fluid py-1">        
-        <h2 class="display-4">Olá <?= $dados['nome'] ?>!</h2>
+        <h2 class="display-4">Olá, <?= $_SESSION['nome'] ?>!</h2>
+        <!-- isset verifica se algo existe -->
         <?php if(isset($feedback)){?>
 				<p class="my-2 alert alert-primary">
 					<?=$feedback?>
