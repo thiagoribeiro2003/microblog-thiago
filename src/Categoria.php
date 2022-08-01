@@ -37,12 +37,24 @@ final class Categoria {
      }
 
      public function excluirCategoria():void{
-          $sql = "DELETE FROM categoria WHERE id = :id";
+          $sql = "DELETE FROM categorias WHERE id = :id";
           try{
                $consulta = $this->conexao->prepare($sql);
                $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
                $consulta->execute();
           } catch (Exception $erro){
+               die("Erro: ".$erro->getMessage());
+          }
+     }
+
+     public function atualizarCategoria():void{
+          $sql = "UPDATE categorias SET nome = :nome WHERE id = :id";
+          try {
+               $consulta = $this->conexao->prepare($sql);
+               $consulta->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+               $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+               $consulta->execute();
+          } catch (Exception $erro) {
                die("Erro: ".$erro->getMessage());
           }
      }

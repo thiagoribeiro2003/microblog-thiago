@@ -33,9 +33,7 @@ $listaDeCategorias = $categoria->listarCategoria();
 				</thead>
 
 				<tbody>
-					<?php
-						foreach($listaDeCategorias as $categoria) {
-					?>
+					<?php foreach($listaDeCategorias as $categoria) {?>
 
 					<tr>
 						<td> <?=$categoria['nome']?> </td>
