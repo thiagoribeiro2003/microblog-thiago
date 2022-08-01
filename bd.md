@@ -3,7 +3,7 @@ CREATE TABLE usuarios (
     id SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL UNIQUE,
-    senha VARCHAR(45) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     tipo ENUM ('admin', 'editor') NOT NULL
 );
 ```
