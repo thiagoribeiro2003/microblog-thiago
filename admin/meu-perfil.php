@@ -56,7 +56,7 @@ if(isset($_POST['atualizar'])){
 
 			<div class="mb-3">
 				<label class="form-label" for="senha">Senha:</label>
-				<input class="form-control" value="" type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
+				<input class="form-control" type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
 			</div>
 
 			<button class="btn btn-primary" name="atualizar"><i class="bi bi-arrow-clockwise"></i> Atualizar</button>

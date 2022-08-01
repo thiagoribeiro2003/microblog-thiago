@@ -6,8 +6,6 @@ $sessao = new ControleDeAcesso;
 $sessao->verificaAcesso();
 $sessao->verificaAcessoAdmin();
 
-
-
 // Criamos um objetos para poder acessar os recursos da Classe
 $usuario = new Usuario; // Não esqueça do autoload e do namespace
 

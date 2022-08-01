@@ -36,6 +36,17 @@ final class Categoria {
         return $resultado;
      }
 
+     public function excluirCategoria():void{
+          $sql = "DELETE FROM categoria WHERE id = :id";
+          try{
+               $consulta = $this->conexao->prepare($sql);
+               $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+               $consulta->execute();
+          } catch (Exception $erro){
+               die("Erro: ".$erro->getMessage());
+          }
+     }
+
 
 
 
