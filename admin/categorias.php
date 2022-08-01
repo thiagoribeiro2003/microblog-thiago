@@ -1,6 +1,12 @@
 <?php
+use Microblog\Categoria;
+use Microblo\Utilitarios;
 require_once "../inc/cabecalho-admin.php";
 $sessao->verificaAcessoAdmin();
+
+$categoria = new Categoria;
+$listaDeCategorias = $categoria->listar();
+// Utilitarios::dump($listaDeCategorias);
 ?>
 
 
@@ -8,7 +14,7 @@ $sessao->verificaAcessoAdmin();
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Categorias <span class="badge bg-dark">X</span>
+		Categorias <span class="badge bg-dark"><?=count($listaDeCategorias)?></span>
 		</h2>
 
 		<p class="text-center mt-5">
@@ -30,7 +36,8 @@ $sessao->verificaAcessoAdmin();
 				<tbody>
 
 					<tr>
-						<td> Nome... </td>
+						<?php foreach($listaDeCategorias as $categoria) ?>
+						<td> <?=$categoria['nome']?> </td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
 							href="categoria-atualiza.php">

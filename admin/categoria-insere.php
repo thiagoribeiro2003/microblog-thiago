@@ -1,7 +1,11 @@
-<?php 
+<?php
+use Microblog\Categoria;
 use Microblog\ControleDeAcesso;
+
 require_once "../inc/cabecalho-admin.php";
+
 $sessao->verificaAcessoAdmin();
+$categoria = new Categoria;
 ?>
 
 
