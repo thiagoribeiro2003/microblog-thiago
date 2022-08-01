@@ -4,6 +4,7 @@ use Microblog\ControleDeAcesso;
 require_once "../inc/cabecalho-admin.php"; // REQUIRE_ONCE = CHAMA UMA ÚNICA VEZ 
 
 $sessao->verificaAcessoAdmin();
+
 if(isset($_POST['inserir'])){
 	$usuario = new Usuario;
 

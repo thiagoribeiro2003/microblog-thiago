@@ -5,8 +5,7 @@ require_once "../inc/cabecalho-admin.php";
 $sessao->verificaAcessoAdmin();
 
 $categoria = new Categoria;
-$listaDeCategorias = $categoria->listar();
-// Utilitarios::dump($listaDeCategorias);
+$listaDeCategorias = $categoria->listarCategoria();
 ?>
 
 
@@ -34,9 +33,11 @@ $listaDeCategorias = $categoria->listar();
 				</thead>
 
 				<tbody>
+					<?php
+						foreach($listaDeCategorias as $categoria) {
+					?>
 
 					<tr>
-						<?php foreach($listaDeCategorias as $categoria) ?>
 						<td> <?=$categoria['nome']?> </td>
 						<td class="text-center">
 							<a class="btn btn-warning" 
@@ -50,6 +51,7 @@ $listaDeCategorias = $categoria->listar();
 							</a>
 						</td>
 					</tr>
+					<?php }?>
 
 				</tbody>                
 			</table>

@@ -14,9 +14,17 @@ final class Categoria {
 
      public function inserirCategoria():void{
         $sql = "INSERT INTO categorias(nome) VALUES(:nome)";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+
      }
 
-     public function listar():array{
+     public function listarCategoria():array{
         $sql = "SELECT id, nome FROM categorias ORDER BY nome";
         try {
             $consulta = $this->conexao->prepare($sql);
