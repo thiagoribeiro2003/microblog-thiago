@@ -1,4 +1,4 @@
-<?php 
+<?php     
 use Microblog\Usuario;
 use Microblog\Utilitarios;
 

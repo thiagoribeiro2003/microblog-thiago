@@ -37,7 +37,7 @@ if(isset($_POST['atualizar'])){
 			<button class="btn btn-primary" name="atualizar"><i class="bi bi-arrow-clockwise"></i> Atualizar</button>
 		</form>
 		
-	</article>
+	</article>                
 </div>
 
 
