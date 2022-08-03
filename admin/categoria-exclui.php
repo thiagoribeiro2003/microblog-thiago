@@ -15,4 +15,5 @@ $categoria->setId($_GET['id']);
 // Chamando a função excluir para ser executada
 $categoria->excluirCategoria();
 
+// Redireciona de volta para página de categorias
 header("location:categorias.php");
