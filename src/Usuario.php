@@ -194,5 +194,11 @@ try {
     }
 
 //===========================================================
+
+    
+    public function getConexao(): PDO
+    {
+        return $this->conexao;
+    }
 }
 
