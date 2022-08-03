@@ -9,7 +9,22 @@ require_once "../inc/cabecalho-admin.php";
 $noticia = new Noticia;
 $categoria = new Categoria;
 $listaDeCategorias = $categoria->listarCategorias();
-//  Utilitarios::dump($listaDeCategorias);
+
+if(isset($_POST['inserir'])){
+	$noticia = new Noticia;
+	$noticia->setTitulo($_POST['titulo']);
+	$noticia->setTexto($_POST['texto']);
+	$noticia->setResumo($_POST['resumo']);
+	$noticia->setDestaque($_POST['destaque']);
+	$noticia->setCategoriaId($_POST['categoria']);
+	$noticia->setImagem('alguma coisa da imagem');
+
+	/* Aplicamos o id do usuário logando na sessão 
+	á propriedade da classe/objeto Usuario */
+	$noticia->usuario->setId($_SESSION['id']);
+
+	Utilitarios::dump($noticia);
+}
 ?>
 
 
@@ -29,7 +44,7 @@ $listaDeCategorias = $categoria->listarCategorias();
 				<option value=""></option> 
 				<?php foreach($listaDeCategorias as $categoria){?>
 					
-					<option value="1"><?=$categoria['nome']?></option>
+					<option value="<?=$categoria['id']?>"><?=$categoria['nome']?></option>
 					<?php }?>
 				</select>
 			</div>

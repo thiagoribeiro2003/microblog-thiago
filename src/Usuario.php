@@ -41,7 +41,7 @@ final class Usuario {
             $consulta->bindParam(":senha", $this->senha, PDO::PARAM_STR);
             $consulta->bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
             $consulta->execute();
-        } catch (\Throwable $erro) {
+        } catch (Exception $erro) {
             die("Erro: ".$erro->getMessage());
         }
         
