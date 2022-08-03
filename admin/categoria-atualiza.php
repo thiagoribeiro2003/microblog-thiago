@@ -8,12 +8,11 @@ $sessao->verificaAcessoAdmin();
 
 $categoria = new categoria;
 $categoria->setId($_GET['id']);
-$dados = $categoria->atualizarCategoria();
+$dados = $categoria->listarUmaCategoria();
 // Utilitarios::dump($dados);
 
 if(isset($_POST['atualizar'])){
 	$categoria->setNome($_POST['nome']);
-
 	$categoria->atualizarCategoria();
 	header("location:categorias.php");
 }
