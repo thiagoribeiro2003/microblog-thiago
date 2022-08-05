@@ -87,7 +87,19 @@ final class Noticia{
 
     // Usamos a função abaixo para pegar da área temporário e enviar para pasta de destino (com o nome do arquivo)
     move_uploaded_file($temporario, $destino);
-    }                                                                                                                    
+    }    
+    
+    public function listarNoticia():array {
+        /* Se o tipo de usuário logado for admin*/
+        if($this->usuario->getTipo() === 'admin') {
+        /*Então ele poderá acessar as notícias de todo mundo*/    
+            $sql = "";        
+        } else {
+            /* Senão (ou seja, é um editor), este usuário (editor)
+            poderá acessar SOMENTE suas próprias notícias*/
+            $sql = "";
+        }
+    }
 
 
 //============================= ID ==============================
