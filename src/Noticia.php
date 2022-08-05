@@ -35,7 +35,7 @@ final class Noticia{
 
     public function inserirNoticia():void{
        $sql = "INSERT INTO noticias(titulo, texto, resumo, imagem, destaque, usuario_id, categoria_id)
-        VALUES(:titulo, :resumo, :imagem, :destaque, :usuario_id, :categoria_id)";
+        VALUES(:titulo, :texto, :resumo, :imagem, :destaque, :usuario_id, :categoria_id)";
             try {
                 $consulta = $this->conexao->prepare($sql);
                 $consulta->bindParam(":titulo", $this->titulo, PDO::PARAM_STR);
@@ -50,7 +50,7 @@ final class Noticia{
                 usando para isso o bindValue. Obs: bindParam pode ser usado, mas ha riscos 
                 de erro devido a forma como ele é executado pelo PHP. Por isso, recomenda-se
                 o uso do bindValue em situações como essa. */
-                $consulta->bindParam(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT); 
+                $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT); 
                 $consulta->execute();       
         } catch (Exception $erro) {
             die("Erro: ". $erro->getMessage());

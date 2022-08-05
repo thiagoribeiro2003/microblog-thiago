@@ -31,7 +31,10 @@ if(isset($_POST['inserir'])){
 	// Enviamos para o setter (e para o banco) SOMENTE a parte que se refere ao nome/extensão do arquivo
 	$noticia->setImagem($imagem['name']);
 
-	Utilitarios::dump($imagem);
+	$noticia->inserirNoticia();
+	header("location:noticias.php");
+
+	// Utilitarios::dump($imagem);
 }
 ?>
 
