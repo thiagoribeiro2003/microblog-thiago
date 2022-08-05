@@ -89,6 +89,8 @@ final class Noticia{
     move_uploaded_file($temporario, $destino);
     }    
     
+
+
     public function listarNoticia():array {
         /* Se o tipo de usuário logado for admin*/
         if($this->usuario->getTipo() === 'admin') {
@@ -100,6 +102,9 @@ final class Noticia{
             $sql = "";
         }
     }
+
+
+    
 
 
 //============================= ID ==============================
