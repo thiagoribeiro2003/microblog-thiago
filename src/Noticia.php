@@ -127,6 +127,29 @@ final class Noticia{
         return $resultado;
     } // final do listar
 
+    public function excluirNoticia(){
+        $sql = "DELETE FROM noticias WHERE id = :id";
+        try {
+           $consulta = $this->conexao->prepare($sql);
+           $consulta->bindParam(':id', $this->id, PDO::PARAM_INT); 
+           $consulta->execute();
+        }catch (Exception $erro){
+            die("Erro ".$erro->getMessage());
+         
+        }
+    }
+
+    public function atualizarNoticia(){
+        $sql = "UPDATE noticias SET categoria = :categoria, titulo = :titulo, texto = :texto, resumo = :resumo, imagem = :imagem WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":categoria", $this->categoria, PDO::PARA_STR);
+            // $consulta->bind
+        } catch (Exception $erro) {
+            die("Erro ".$erro->getMessage());
+        }
+    }
+
 
 
 

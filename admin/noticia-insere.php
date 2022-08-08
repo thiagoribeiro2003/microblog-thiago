@@ -1,5 +1,4 @@
 <?php
-
 use Microblog\Categoria;
 use Microblog\Noticia;
 use Microblog\Utilitarios;
