@@ -11,7 +11,7 @@ $sessao->logout();
 }
 
 // Executamos verificaAcesso para checar se tem alguém logado
-$sessao->verificaAcesso();
+ $sessao->verificaAcesso();
 
 $pagina = basename($_SERVER['PHP_SELF']); // Ele pega o nome da página que vc está na URL   
 ?>
