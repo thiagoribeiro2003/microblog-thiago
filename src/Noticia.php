@@ -139,12 +139,32 @@ final class Noticia{
         }
     }
 
+
+    public function listarUmaNoticia(){
+        $sql = "SELECT * FROM noticias WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro: ". $erro->getMessage());
+        }
+        return $resultado;
+    }
+    
+
     public function atualizarNoticia(){
         $sql = "UPDATE noticias SET categoria = :categoria, titulo = :titulo, texto = :texto, resumo = :resumo, imagem = :imagem WHERE id = :id";
         try {
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindParam(":categoria", $this->categoria, PDO::PARA_STR);
-            // $consulta->bind
+            $consulta->bindParam(":categoria", $this->categoria, PDO::PARAM_STR);
+            $consulta->bindParam(":titulo", $this->titulo, PDO::PARAM_STR);
+            $consulta->bindParam(":texto", $this->texto, PDO::PARAM_STR);
+            $consulta->bindParam(":resumo", $this->resumo, PDO::PARAM_STR);
+            $consulta->bindParam(":imagem", $this->imagem, PDO::PARAM_STR);
+            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
         } catch (Exception $erro) {
             die("Erro ".$erro->getMessage());
         }

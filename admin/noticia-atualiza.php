@@ -1,5 +1,30 @@
 <?php
+use Microblog\Categoria;
+use Microblog\Noticia;
+use Microblog\Utilitarios;
+
 require_once "../inc/cabecalho-admin.php";
+
+$noticia = new Noticia;
+$noticia->setId($_GET['id']);
+$dados = $noticia->listarUmaNoticia();
+Utilitarios::dump($dados);
+
+
+
+if(isset($_POST['atualizar'])){
+	$noticia->setCategoria($_POST['categoria']);
+	$noticia->setTitulo($_POST['titulo']);
+	$noticia->setTexto($_POST['texto']);
+    $noticia->setResumo($_POST['resumo']);
+    $noticia->setTexto($_POST['imagem']);
+    $noticia->setTexto($_POST['destaque']);
+
+	$noticia->atualizarNoticia();
+	header("location:usuarios.php");
+}
+
+
 ?>
 
 
@@ -15,7 +40,7 @@ require_once "../inc/cabecalho-admin.php";
             <div class="mb-3">
                 <label class="form-label" for="categoria">Categoria:</label>
                 <select class="form-select" name="categoria" id="categoria" required>
-                    <option value=""></option>
+                    <option value=""><?=$dados['categoria']?></option>                 
                     <option value="1">Ciência</option>
                     <option value="2">Educação</option>
                     <option value="3">Tecnologia</option>
