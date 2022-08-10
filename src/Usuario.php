@@ -16,20 +16,7 @@ final class Usuario {
     }
 
 
-    public function listar():array {
-        $sql = "SELECT id, nome, email, tipo 
-        FROM usuarios ORDER BY nome";
-
-        try {
-            $consulta = $this->conexao->prepare($sql);
-            $consulta->execute();
-            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $erro) {
-            die("Erro: ". $erro->getMessage());
-        }
-        return $resultado;
-    }
-
+    
     public function inserir():void {
         $sql = "INSERT INTO usuarios(nome, email, senha, tipo)
         VALUES(:nome, :email, :senha, :tipo)";
@@ -46,6 +33,21 @@ final class Usuario {
         }
         
     }
+
+    public function listar():array {
+        $sql = "SELECT id, nome, email, tipo 
+        FROM usuarios ORDER BY nome";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro: ". $erro->getMessage());
+        }
+        return $resultado;
+    }
+
 
     public function listarUm(): array{
         $sql = "SELECT * FROM usuarios WHERE id = :id";
