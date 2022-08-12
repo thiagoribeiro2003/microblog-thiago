@@ -174,21 +174,46 @@ final class Noticia{
     } // final do listarUm
     
 
-    public function atualizarNoticia(){
-        $sql = "UPDATE noticias SET categoria = :categoria, titulo = :titulo, texto = :texto, resumo = :resumo, imagem = :imagem WHERE id = :id";
+   
+
+
+    public function atualizarNoticia():void {
+        if($this->usuario->getTipo() === 'admin') { 
+            $sql = "UPDATE noticias SET 
+            titulo = :titulo, texto = :texto, resumo = :resumo,
+            imagem = :imagem, categoria_id = :categoria_id, 
+            destaque = :destaque WHERE id = :id";     
+        } else { // se for usuário editor
+            $sql = "UPDATE noticias SET 
+            titulo = :titulo, texto = :texto, resumo = :resumo,
+            imagem = :imagem, categoria_id = :categoria_id, 
+            destaque = :destaque WHERE id = :id AND usuario_id = :usuario_id";
+        }
+
         try {
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindParam(":categoria", $this->categoria, PDO::PARAM_STR);
-            $consulta->bindParam(":titulo", $this->titulo, PDO::PARAM_STR);
-            $consulta->bindParam(":texto", $this->texto, PDO::PARAM_STR);
-            $consulta->bindParam(":resumo", $this->resumo, PDO::PARAM_STR);
-            $consulta->bindParam(":imagem", $this->imagem, PDO::PARAM_STR);
-            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+
+              // PARAMETRO ID DA NOTICIA
+              $consulta->bindParam(":id",  $this->id, PDO::PARAM_INT);
+              $consulta->bindParam(":titulo", $this->titulo, PDO::PARAM_STR);
+              $consulta->bindParam(":texto", $this->texto, PDO::PARAM_STR);
+              $consulta->bindParam(":resumo", $this->resumo, PDO::PARAM_STR);
+              $consulta->bindParam(":imagem", $this->imagem, PDO::PARAM_STR);
+              $consulta->bindParam(":categoria_id", $this->categoriaId, PDO::PARAM_INT);
+              $consulta->bindParam(":destaque", $this->destaque, PDO::PARAM_STR);
+            
+            if($this->usuario->getTipo() !== 'admin'){
+        
+                // PARAMETRO USUARIO_ID
+                $consulta->bindValue("usuario_id", $this->usuario->getId(),PDO::PARAM_INT);
+            }
             $consulta->execute();
+           
         } catch (Exception $erro) {
-            die("Erro ".$erro->getMessage());
+            die("Erro: ".$erro->getMessage());
         }
-    }
+
+    } // final do listarUm
 
 
 

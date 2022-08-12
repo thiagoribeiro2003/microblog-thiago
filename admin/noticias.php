@@ -41,8 +41,7 @@ $listaDeNoticias = $noticia->listarNoticia();
 						<th>Autor</th>
 						<?php } ?>
 
-						<?php if($_SESSION['tipo'] == '')?>
-						<th class="text-center" >Operações</th>
+						<th class="text-center" colspan="2">Operações</th>
 					</tr>
 				</thead>
 

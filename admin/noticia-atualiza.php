@@ -16,6 +16,32 @@ $dados = $noticia->listarUmaNoticia();
 
 // Utilitarios::dump($dados);
 
+if(isset($_POST['atualizar'])){
+	$noticia->setTitulo($_POST['titulo']);
+	$noticia->setTexto($_POST['texto']);
+	$noticia->setResumo($_POST['resumo']);
+	$noticia->setDestaque($_POST['destaque']); // não tem o _id pois no FORMULÁRIO está somento o nome do campo
+	$noticia->setCategoriaId($_POST['categoria']);
+
+    /* Lógica/Algoritmo para atualizar a foto se necessário */
+    
+    /* Se o campo imagem estiver vazio, então
+    significa que o usuário NÃO QUER TROCAR DE IMAGEM. Ou seja, 
+    vamos manter a imagem existente */
+    if( empty($_FILES['imagem']['name']) ){
+        $noticia->setImagem($_POST['imagem-existente']);
+    } else {
+        /* Senão, então pegamos a referência (nome e extensão) da 
+        nova imagem e fazemos o processo de upload e envio
+        desta referência para o objeto*/
+        $noticia->uploadNoticia($_FILES['imagem']);
+        $noticia->setImagem($_FILES['imagem']['name']);
+    }
+
+    $noticia->atualizarNoticia();
+    header("location:noticias.php?Noticia-atualizada");
+}
+
 ?>
 
 
@@ -26,14 +52,16 @@ $dados = $noticia->listarUmaNoticia();
             Atualizar dados da notícia
         </h2>
 
-        <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
+        <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label" for="categoria">Categoria:</label>
                 <select class="form-select" name="categoria" id="categoria" required>
                 <option value=""></option>
                 <?php foreach($listaDeCategorias as $categoria){?>
-					<option value="<?=$categoria['id']?>">
+					<option
+<?php if($dados['categoria_id'] === $categoria['id']) echo " selected "?>
+                    value="<?=$categoria['id']?>">
 					<?=$categoria['nome']?>
 					</option>
 					<?php }?>
@@ -69,10 +97,14 @@ $dados = $noticia->listarUmaNoticia();
 
             <div class="mb-3">
                 <p>Deixar a notícia em destaque?
-                    <input type="radio" class="btn-check" name="destaque" id="nao" autocomplete="off" checked value="nao">
+                    <input type="radio" class="btn-check" name="destaque" id="nao" autocomplete="off" 
+                    <?php if($dados['destaque'] == 'nao') echo 'checked'?>
+                    value="nao">
                     <label class="btn btn-outline-danger" for="nao">Não</label>
 
-                    <input type="radio" class="btn-check" name="destaque" id="sim" autocomplete="off" value="sim">
+                    <input type="radio" class="btn-check" name="destaque" id="sim" autocomplete="off" 
+                    <?php if($dados['destaque'] == 'sim') echo 'checked'?>
+                    value="sim">
                     <label class="btn btn-outline-success" for="sim">Sim</label>
                 </p>
             </div>
