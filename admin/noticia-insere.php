@@ -53,8 +53,9 @@ if(isset($_POST['inserir'])){
                 <select class="form-select" name="categoria" id="categoria" required>
 				<option value=""></option> 
 				<?php foreach($listaDeCategorias as $categoria){?>
-					
-					<option value="<?=$categoria['id']?>"><?=$categoria['nome']?></option>
+					<option value="<?=$categoria['id']?>">
+					<?=$categoria['nome']?>
+					</option>
 					<?php }?>
 				</select>
 			</div>

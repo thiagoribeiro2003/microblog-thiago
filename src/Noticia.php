@@ -140,18 +140,38 @@ final class Noticia{
     }
 
 
-    public function listarUmaNoticia(){
-        $sql = "SELECT * FROM noticias WHERE id = :id";
+    public function listarUmaNoticia():array {
+        if($this->usuario->getTipo() === 'admin') { 
+            $sql = "SELECT titulo, texto, resumo, imagem, usuario_id, categoria_id, destaque
+            FROM noticias WHERE id = :id";       
+        } else { // se for usuário editor
+            $sql = "SELECT titulo, texto, resumo, imagem, usuario_id, categoria_id, destaque
+            FROM noticias WHERE id = :id AND usuario_id = :usuario_id";
+        }
+
         try {
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindParam(":id", $this->id, PDO::PARAM_INT);
+
+              // PARAMETRO ID DA NOTICIA
+              $consulta->bindParam(":id",  $this->id, PDO::PARAM_INT);
+            
+            if($this->usuario->getTipo() !== 'admin'){
+        
+                // PARAMETRO USUARIO_ID
+                $consulta->bindValue(
+                    "usuario_id",
+                    $this->usuario->getId(),
+                    PDO::PARAM_INT
+                );
+            }
             $consulta->execute();
             $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $erro) {
-            die("Erro: ". $erro->getMessage());
+            die("Erro: ".$erro->getMessage());
         }
+
         return $resultado;
-    }
+    } // final do listarUm
     
 
     public function atualizarNoticia(){

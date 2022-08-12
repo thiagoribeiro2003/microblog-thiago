@@ -58,7 +58,13 @@ $listaDeNoticias = $noticia->listarNoticia();
 							Na prática, o valor à esquerda é exibido (desde que ele exista), caso contrário o valor à direita é exibido
 
 							-->
-						<?= $noticia['autor'] ?? "<i> Equipe Microblog </i>"?>
+						<?php
+						 if ($noticia['autor']){
+							echo Utilitarios::limitaCaractere($noticia['autor']);
+						} else {
+							echo "<i>Equipe Microblog</i>";
+						}
+						 ?>
 						</td>
 						<?php }?>
 
