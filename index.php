@@ -6,38 +6,29 @@ require_once "inc/cabecalho.php";
 $noticia = new Noticia;
 $noticia->setDestaque('sim');
 $destaques = $noticia->listarDestaques();
-Utilitarios::dump($destaques);
+
+$todas = $noticia->listarTodas();
 ?>
 
 
 <div class="row my-1 mx-md-n1">
+    <?php foreach($destaques as $destaque){?>
         <!-- INÍCIO Card -->
 		<div class="col-md-6 my-1 px-md-1">
             <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="https://picsum.photos/seed/picsum/200/100" class="card-img-top" alt="...">
+                <a href="noticia.php?id=<?=$destaque['id']?>" class="card-link">
+                    <img src="imagem/<?=$destaque['imagem']?>" class="card-img-top" alt="Imagem da notícia">
                     <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
+                        <h3 class="fs-4 card-title"><?=$destaque['titulo']?></h3>
+                        <p class="card-text"><?=$destaque['resumo']?></p>
                     </div>
                 </a>
             </article>
 		</div>
 		<!-- FIM Card -->
+        <?php }?>
 
-        <!-- INÍCIO Card -->
-		<div class="col-md-6 my-1 px-md-1">
-            <article class="card shadow-sm h-100">
-                <a href="noticia.php" class="card-link">
-                    <img src="https://picsum.photos/seed/picsum/200/100" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="fs-4 card-title">Título da notícia...</h3>
-                        <p class="card-text">Resumo da notícia.</p>
-                    </div>
-                </a>
-            </article>
-		</div>
-		<!-- FIM Card -->
+       
 
 </div>        
         
@@ -47,27 +38,15 @@ Utilitarios::dump($destaques);
         <div class="row my-1">
             <div class="col-12 px-md-1">
                 <div class="list-group">
-                    <h2 class="fs-6 text-center text-muted">Todas as notícias</h2>
-                    <a href="noticia.php" class="list-group-item list-group-item-action">
-                         <h3 class="fs-6"><time>12/12/2012</time> - Título da notícia</h3>
-                        <p>Resumo da notícia</p>
+                    <h2 class="fs-6 text-center text-muted">Todas as notícias <?=count($todas)?></h2>
+                    <?php foreach($todas as $noticia){?>
+                    <a href="noticia.php?=id<?=$noticia['id']?>" class="list-group-item list-group-item-action">
+                         <h3 class="fs-6">
+                            <time><?=Utilitarios::formataData($noticia['data'])?>
+                            </time> - <?=$noticia['titulo']?></h3>
+                        <p><?=$noticia['resumo']?></p>
                     </a>
-                    <a href="noticia.php" class="list-group-item list-group-item-action">
-                         <h3 class="fs-6"><time>12/12/2012</time> - Título da notícia</h3>
-                        <p>Resumo da notícia</p>
-                    </a>
-                    <a href="noticia.php" class="list-group-item list-group-item-action">
-                         <h3 class="fs-6"><time>12/12/2012</time> - Título da notícia</h3>
-                        <p>Resumo da notícia</p>
-                    </a>
-                    <a href="noticia.php" class="list-group-item list-group-item-action">
-                         <h3 class="fs-6"><time>12/12/2012</time> - Título da notícia</h3>
-                        <p>Resumo da notícia</p>
-                    </a>
-                    <a href="noticia.php" class="list-group-item list-group-item-action">
-                         <h3 class="fs-6"><time>12/12/2012</time> - Título da notícia</h3>
-                        <p>Resumo da notícia</p>
-                    </a>
+                    <?php }?>
                 </div>
             </div>
         </div>
