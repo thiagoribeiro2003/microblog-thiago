@@ -41,7 +41,7 @@ require_once "inc/cabecalho.php";
         
         
     
-
+<?php include_once "inc/todas.php";?>
 
 
 <?php 

@@ -257,6 +257,23 @@ final class Noticia{
         return $resultado;
     }
 
+    public function listarDetalhes():array {
+        $sql = "SELECT /* Esta colocando noticias. pois vai ocorrer a ligação de tabelas (relacionamentos) entao para não ter */
+                noticias.id, noticias.titulo, noticias.data, noticias.imagem, noticias.texto, usuarios.nome AS autor
+                FROM noticias LEFT JOIN usuarios
+                ON noticias.usuario_id = usuarios.id
+                WHERE noticias.id = :id"; 
+        try {
+              $consulta = $this->conexao->prepare($sql);
+              $consulta->execute();
+              $consulta->bindParam(":id",  $this->id, PDO::PARAM_INT); 
+              $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+        return $resultado;
+    }
+
 
 
 
