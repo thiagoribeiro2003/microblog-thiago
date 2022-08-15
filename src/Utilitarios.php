@@ -22,6 +22,10 @@ abstract class Utilitarios
         return mb_strimwidth($dados, 0, 25, " ...");
     }
 
+    public static function formataTexto(string $texto):string{
+        return nl2br($texto);
+    }
+
 }
 
 ?>
