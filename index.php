@@ -1,5 +1,12 @@
-<?php 
+<?php
+use Microblog\Noticia;
+use Microblog\Utilitarios;
+
 require_once "inc/cabecalho.php";
+$noticia = new Noticia;
+$noticia->setDestaque('sim');
+$destaques = $noticia->listarDestaques();
+Utilitarios::dump($destaques);
 ?>
 
 

@@ -127,27 +127,7 @@ final class Noticia{
         return $resultado;
     } // final do listar
 
-    public function excluirNoticia():void{
-        if($this->usuario->getTipo() === 'admin'){
-        $sql = "DELETE FROM noticias WHERE id = :id";
-        } else {
-            $sql = "DELETE FROM noticias
-            WHERE id = :id AND usuario_id = :usuario_id";
-        }
-        try {
-           $consulta = $this->conexao->prepare($sql);
-           $consulta->bindParam(':id', $this->id, PDO::PARAM_INT); 
-           
-           if($this->usuario->getTipo() !== 'admin') {
-               $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
-            }
-            
-            $consulta->execute();
-        }catch (Exception $erro){
-            die("Erro ".$erro->getMessage());
-         
-        }
-    }
+    
 
 
     public function listarUmaNoticia():array {
@@ -224,6 +204,44 @@ final class Noticia{
         }
 
     } // final do listarUm
+
+    public function excluirNoticia():void{
+        if($this->usuario->getTipo() === 'admin'){
+        $sql = "DELETE FROM noticias WHERE id = :id";
+        } else {
+            $sql = "DELETE FROM noticias
+            WHERE id = :id AND usuario_id = :usuario_id";
+        }
+        try {
+           $consulta = $this->conexao->prepare($sql);
+           $consulta->bindParam(':id', $this->id, PDO::PARAM_INT); 
+           
+           if($this->usuario->getTipo() !== 'admin') {
+               $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
+            }
+            
+            $consulta->execute();
+        }catch (Exception $erro){
+            die("Erro ".$erro->getMessage());
+         
+        }
+    }
+
+    /* Métodos para a área pública do site */ 
+    public function listarDestaques():array{
+        $sql = "SELECT titulo, imagem, resumo, id FROM noticias 
+        WHERE destaque = :destaque ORDER BY data DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(":destaque", $this->destaque, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $erro){
+            die("Erro: ". $erro->getMessage());
+        }
+        return $resultado;
+    }
 
 
 
