@@ -127,12 +127,22 @@ final class Noticia{
         return $resultado;
     } // final do listar
 
-    public function excluirNoticia(){
+    public function excluirNoticia():void{
+        if($this->usuario->getTipo() === 'admin'){
         $sql = "DELETE FROM noticias WHERE id = :id";
+        } else {
+            $sql = "DELETE FROM noticias
+            WHERE id = :id AND usuario_id = :usuario_id";
+        }
         try {
            $consulta = $this->conexao->prepare($sql);
            $consulta->bindParam(':id', $this->id, PDO::PARAM_INT); 
-           $consulta->execute();
+           
+           if($this->usuario->getTipo() !== 'admin') {
+               $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
+            }
+            
+            $consulta->execute();
         }catch (Exception $erro){
             die("Erro ".$erro->getMessage());
          
