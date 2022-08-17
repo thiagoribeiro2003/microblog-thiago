@@ -275,21 +275,21 @@ final class Noticia{
         return $resultado;
     }
 
-    public function listarPorCategoria():array{
-        $sql = "SELECT 
+    public function listarPorCategoria():array {
+     $sql = "SELECT 
                 noticias.id, noticias.titulo, 
                 noticias.data, noticias.resumo, 
                 usuarios.nome AS autor,
                 categorias.nome AS categoria 
-                FROM noticias
+            FROM noticias
                 LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id
                 INNER JOIN categorias ON noticias.categoria_id = categorias.id
-                WHERE categoria_id = :categoria_id";
+            WHERE noticias.categoria_id = :categoria_id";
         try {
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindParam(":id",  $this->id, PDO::PARAM_INT); 
+            $consulta->bindParam(":categoria_id", $this->categoriaId, PDO::PARAM_INT); 
             $consulta->execute();
-            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
       } catch (Exception $erro) {
           die("Erro: ".$erro->getMessage());
       }
@@ -302,16 +302,17 @@ final class Noticia{
 
 
 
+
 //============================= ID ==============================
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     public function setId(int $id)
     {
-        $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $this->id = $id;
     }
 
 
@@ -386,16 +387,16 @@ final class Noticia{
     }
 
 
-//============================= DESTAQUE ==============================
+//============================= CATEGORIA ==============================
 
 
-    public function getCategoriaId()
+    public function getCategoriaId(): int
     {
         return $this->categoriaId;
     }
 
     public function setCategoriaId(int $categoriaId)
     {
-        $this->categoriaId = filter_var($categoriaId, FILTER_SANITIZE_SPECIAL_CHARS);
+        $this->categoriaId = filter_var($categoriaId, FILTER_SANITIZE_NUMBER_INT);
     }
 }

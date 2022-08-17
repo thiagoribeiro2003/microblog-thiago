@@ -1,6 +1,12 @@
 <?php
+/* Inicialização do Output Buffer 
+Gerenciamento da memória de saídas/redirecionamentos */
+ob_start();
+
 use Microblog\Categoria;
+use Microblog\Noticia;
 require_once "vendor/autoload.php"; 
+$noticia = new Noticia;
 $categoria = new Categoria;
 $listaDeCategorias = $categoria->listarCategorias();
 ?>
