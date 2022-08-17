@@ -10,7 +10,7 @@ $resultados = $noticia->busca();
 
 
 <div class="row bg-white rounded shadow my-1 py-4">
-    <h2 class="col-12 fw-light">                    <!-- ou $_GET['termo']-->
+    <h2 class="col-12 fw-light">                         <!-- ou $_GET['termo']-->
         Você procurou por <span class="badge bg-dark"><?=$noticia->getTermo()?></span> e
         obteve <span class="badge bg-info"><?=count($resultados)?></span> resultados
     </h2>
@@ -22,11 +22,13 @@ $resultados = $noticia->busca();
                 
                 <h3 class="fs-4 card-title fw-light"><?=$noticias['titulo']?></h3>
                 <p class="card-text">
-                    <time><?=Utilitarios::formataData($noticias['data'])?></time> - 
+                    <time datetime="<?=$resultado['data']?>">
+                    <?=Utilitarios::formataData($noticias['data'])?>
+                    </time> - 
                     <?=$noticias['resumo']?>
                 </p>
                 
-                <a href="noticia.php" class="btn btn-primary btn-sm">Continuar lendo</a>
+                <a href="noticia.php?id=<?=$noticias['id']?>" class="btn btn-primary btn-sm">Continuar lendo</a>
             </div>
         </article>
     </div>

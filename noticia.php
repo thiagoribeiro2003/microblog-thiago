@@ -14,7 +14,7 @@ $dados = $noticia->listarDetalhes();
     <article class="col-12">
         <h2> <?=$dados['titulo']?> </h2>
         <p class="font-weight-light">
-            <time>
+            <time datetime="<?=$resultado['data']?>">
                 <?=Utilitarios::formataData($dados['data'])?>
             </time> - <span><?=$dados['autor']?></span>
             <span><?=$dados['autor'] ?? "<i>Equipe Microblog</i>"?></span>

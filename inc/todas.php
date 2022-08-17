@@ -14,7 +14,7 @@ $todas = $noticia->listarTodas();
                     <?php foreach($todas as $noticia){?>
                     <a href="noticia.php?id=<?=$noticia['id']?>" class="list-group-item list-group-item-action">
                          <h3 class="fs-6">
-                            <time><?=Utilitarios::formataData($noticia['data'])?>
+                            <time datetime="<?=$resultado['data']?>"><?=Utilitarios::formataData($noticia['data'])?>
                             </time> - <?=$noticia['titulo']?></h3>
                         <p><?=$noticia['resumo']?></p>
                     </a>
@@ -22,4 +22,3 @@ $todas = $noticia->listarTodas();
                 </div>
             </div>
         </div>
-?>
