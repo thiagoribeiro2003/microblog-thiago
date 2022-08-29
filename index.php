@@ -7,7 +7,7 @@ $destaques = $noticia->listarDestaques();
 $todas = $noticia->listarTodas();
 ?>
 
-<h1>Olá MUndo</h1>
+
 <div class="row my-1 mx-md-n1">
     <?php foreach($destaques as $destaque){?>
         <!-- INÍCIO Card -->
