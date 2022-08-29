@@ -9,7 +9,7 @@ require_once "inc/cabecalho.php";
 /* Mensagens de feedback relacionadas ao acesso */ 
 if( isset($_GET['acesso_proibido'])) {
 	$feedback = 'Você deve logar primeiro! <i class="bi bi-x-circle"></i>';
-} elseif (isset($_GET['campos_obrigatorios'])) {
+}  elseif (isset($_GET['campos_obrigatorios'])) {
 	$feedback = 'Você deve preencher os dois campos! <i class="bi bi-exclamation-circle"></i>';
 } elseif (isset ($_GET['nao_encontrado'])) {
 	$feedback = 'Usuário não encontrado! <i class="bi bi-x-circle"></i> ';
