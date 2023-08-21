@@ -8,7 +8,7 @@ O blog também possui um sistema de busca, onde os usuários podem pesquisar por
 
 Tecnologias utizadas no projeto: 
 ◦ PHP com POO (Programação Orientada a Objetos)
-<>br
+<br>
 ◦ Composer
 <br>
 ◦ SQL
