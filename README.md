@@ -7,13 +7,13 @@ O **administrador** tem acesso completo ao sistema, podendo gerenciar membros, i
 O blog também possui um sistema de busca, onde os usuários podem pesquisar por notícias através das categorias criadas pelos administradores. Além disso, implementei um campo de busca inteligente que mostra se há ou não notícias relacionadas ao termo pesquisado.
 
 Tecnologias utizadas no projeto: 
- ◦ PHP com POO (Programação Orientada a Objetos)
- ◦ Composer
- ◦ SQL
- ◦ MySQL/MariaDB
- ◦ CSS
- ◦ JavaScript
- ◦ Bootstrap
- ◦ Git e GitHub
+◦ PHP com POO (Programação Orientada a Objetos)
+◦ Composer
+◦ SQL
+◦ MySQL/MariaDB
+◦ CSS
+◦ JavaScript
+◦ Bootstrap
+◦ Git e GitHub
 
- Para visualizar este projeto acesse: https://thiagomicroblog.alvoead.com.br/index.php
+Para visualizar este projeto acesse: https://thiagomicroblog.alvoead.com.br/index.php
