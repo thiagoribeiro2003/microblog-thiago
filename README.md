@@ -8,12 +8,19 @@ O blog também possui um sistema de busca, onde os usuários podem pesquisar por
 
 Tecnologias utizadas no projeto: 
 ◦ PHP com POO (Programação Orientada a Objetos)
+<>br
 ◦ Composer
+<br>
 ◦ SQL
+<br>
 ◦ MySQL/MariaDB
+<br>
 ◦ CSS
+<br>
 ◦ JavaScript
+<br>
 ◦ Bootstrap
+<br>
 ◦ Git e GitHub
 
 Para visualizar este projeto acesse: https://thiagomicroblog.alvoead.com.br/index.php
